@@ -7,13 +7,13 @@
 #define BUZZER_CACHE_SIZE 16  // queue to store 16 sounds (1 sound takes 4 bytes)
 #define SILENCE_FREQ      0   // frequency of 0 indicates silence/pause in the sound
 
-typedef struct
+typedef volatile struct
 {
   uint16_t frequency[BUZZER_CACHE_SIZE];
   uint16_t duration[BUZZER_CACHE_SIZE];
-  volatile uint32_t wIndex;
-  volatile uint32_t rIndex;
-  volatile int32_t toggles;  // number of half periods for the sound
+  uint32_t wIndex;
+  uint32_t rIndex;
+  int32_t toggles;  // number of half periods for the sound
 } BUZZER;
 
 static BUZZER buzzer;
